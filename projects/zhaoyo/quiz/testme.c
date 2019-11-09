@@ -6,13 +6,26 @@
 char inputChar()
 {
     // TODO: rewrite this function
-    return ' ';
+    int x;
+    x = rand()%94+32;
+    char y;
+    y = (char)x;	//convert integer to char
+    return y;
 }
 
 char *inputString()
 {
     // TODO: rewrite this function
-    return "";
+    char* z = malloc(6 * sizeof(char));
+    int i=0;
+    int H;
+    for(;i<5;i++){
+    	H = rand()%26+97;
+    	z[i] = (char)H;
+    }
+    z[5] = '\0';
+
+    return z;
 }
 
 void testme()
@@ -45,6 +58,7 @@ void testme()
       printf("error ");
       exit(200);
     }
+    free(s);
   }
 }
 
