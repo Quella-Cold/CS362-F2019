@@ -127,14 +127,5 @@ int scoreFor(int player, struct gameState *state);
 int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
-int card_mine(int *j, struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos);
-
-void card_baron(int choice1,struct gameState *state,int currentPlayer,int nextPlayer);
-
-void card_minion(struct gameState *state,int choice1,int choice2,int handPos,int currentPlayer);
-
-void card_tribute(struct gameState *state,int nextPlayer,int *tributeRevealedCards,int currentPlayer);
-
-int card_ambassador(int choice2,int choice1,int handPos, struct gameState *state,int currentPlayer);
 
 #endif
