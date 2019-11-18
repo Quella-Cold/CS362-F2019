@@ -34,7 +34,7 @@ int main(int argc, char const *argv[]) {
     printf("<<<<<<<<<< tribute test %d>>>>>>>>>>>\n", i+1);
 
     num_player = rand()%(MAX_NUM_PLAYER -1) + 2;
-    seed = rand()%SEED_VAL;
+    seed = rand()%SEED_VAL+1;
     currentPlayer = rand()%num_player;
     new_numAction = 0;
     coins = 0;
