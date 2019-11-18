@@ -28,6 +28,7 @@ int main(int argc, char const *argv[]) {
   int new_numAction;
   int new_numhandcount;
   int i;
+  int j;
 
   for(i=0;i<NUM_TESTS;i++){
 
@@ -46,15 +47,15 @@ int main(int argc, char const *argv[]) {
 
     init_coins = G.coins;
 
-    for (i = 0; i <= 1; i ++) {     //The second card have no effect
+    for (j = 0; j <= 1; j ++) {     //The second card have no effect
         printf("________Check it is Treasure card_________\n");
-        if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold) { //Treasure cards
+        if (tributeRevealedCards[j] == copper || tributeRevealedCards[j] == silver || tributeRevealedCards[j] == gold) { //Treasure cards
           if(coins == (init_coins+2))
             printf("Pass coin number check!!!!!!!!\n");
           else
             printf("Failed coin number check > ^ <\n");
         }
-        else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall) { //Victory Card Found
+        else if (tributeRevealedCards[j] == estate || tributeRevealedCards[j] == duchy || tributeRevealedCards[j] == province || tributeRevealedCards[j] == gardens || tributeRevealedCards[j] == great_hall) { //Victory Card Found
             printf("________Check it is Victory card_________\n");
             if(new_numhandcount = (G.handCount[currentPlayer]+2))
               printf("Pass num actions check!!!!!\n");
