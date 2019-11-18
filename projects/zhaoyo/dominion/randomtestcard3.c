@@ -41,11 +41,8 @@ int main(int argc, char const *argv[]) {
     coins = 0;
     nextPlayer = (currentPlayer + 1)%num_player;
     new_numhandcount = 0;
-    printf("num_player:%d  seed:%d  currentPlayer:%d  nextPlayer:%d\n",num_player, seed, currentPlayer, nextPlayer );
     initializeGame(num_player, k, seed, &G);
-    printf("here\n" );
     card_tribute(&G,nextPlayer,tributeRevealedCards,currentPlayer);
-    printf("here\n" );
 
     init_coins = G.coins;
 
