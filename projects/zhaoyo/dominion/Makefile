@@ -16,7 +16,7 @@ rand1: dominion.o randomtestcard1.c
 runrand1: rand1
 	./randomtestcard1 &> randomtestcard1.out
 	gcov randomtestcard1.c >> randomtestcard1.out
-	cat dominion.c.gcov >> randomtestcard1.out
+	cat randomtestcard1.c.gcov >> randomtestcard1.out
 
 rand2: dominion.o randomtestcard2.c
 	gcc -o randomtestcard2 randomtestcard2.c -g dominion.o rngs.o $(CFLAGS)
