@@ -48,8 +48,8 @@ int main(int argc, char const *argv[]) {
     init_coins = G.coins;
 
     for (j = 0; j <= 1; j ++) {     //The second card have no effect
-        printf("________Check it is Treasure card_________\n");
         if (tributeRevealedCards[j] == copper || tributeRevealedCards[j] == silver || tributeRevealedCards[j] == gold) { //Treasure cards
+        printf("________Check it is Treasure card_________\n");
           if(coins == (init_coins+2))
             printf("Pass coin number check!!!!!!!!\n");
           else
