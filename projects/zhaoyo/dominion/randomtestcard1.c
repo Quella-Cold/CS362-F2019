@@ -49,7 +49,6 @@ int main(int argc, char const *argv[]) {
 
     choice1 = rand()%2;
     currentPlayer = rand()%num_player;
-    nextPlayer = (currentPlayer + 1)%num_player;
 
     init_coins = G.coins;
 
@@ -58,7 +57,7 @@ int main(int argc, char const *argv[]) {
       if(G.hand[currentPlayer][j] == estate)
         init_num_estate++;
 
-    cardEffect(baron, choice1, choice2, choice3, &G, handpos, &bonus);
+    cardEffect(baron, choice1, choice2, choice3, &G, handPos, &bonus);
 
     coins = G.coins;
     for(j = 0; j < G.handCount[currentPlayer] ; j++)
