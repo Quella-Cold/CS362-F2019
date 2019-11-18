@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "rngs.h"
 #include <stdlib.h>
+##include <time.h>
 #include <assert.h>
 
 #define NUM_TESTS 100
@@ -20,6 +21,7 @@ int main(int argc, char const *argv[]) {
 
   int choice1;
   int currentPlayer;
+  int nextPlayer;
   int num_player;
   int seed;
   int init_coins;
