@@ -23,7 +23,7 @@ rand2: dominion.o randomtestcard2.c
 
 runrand2: rand2
 	./randomtestcard2 &> randomtestcard2.out
-	gcov randomtestcard2.c >> randomtestcard2.out
+	gcov -b -f randomtestcard2.c >> randomtestcard2.out
 	cat randomtestcard2.c.gcov >> randomtestcard2.out
 
 rand3: dominion.o randomtestcard3.c
@@ -31,7 +31,7 @@ rand3: dominion.o randomtestcard3.c
 
 runrand3: rand3
 	./randomtestcard3 &> randomtestcard3.out
-	gcov randomtestcard3.c >> randomtestcard3.out
+	gcov -b -f randomtestcard3.c >> randomtestcard3.out
 	cat randomtestcard3.c.gcov >> randomtestcard3.out
 
 randtests: rand1 rand2 rand3
