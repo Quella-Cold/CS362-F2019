@@ -23,16 +23,16 @@ rand2: dominion.o randomtestcard2.c
 
 runrand2: rand2
 	./randomtestcard2 &> randomtestcard2.out
-	gcov dominion.c >> randomtestcard2.out
-	cat dominion.c.gcov >> randomtestcard2.out
+	gcov randomtestcard2.c >> randomtestcard2.out
+	cat randomtestcard2.c.gcov >> randomtestcard2.out
 
 rand3: dominion.o randomtestcard3.c
 	gcc -o randomtestcard1 randomtestcard3.c -g dominion.o rngs.o $(CFLAGS)
 
 runrand3: rand3
 	./randomtestcard3 &> randomtestcard3.out
-	gcov dominion.c >> randomtestcard3.out
-	cat dominion.c.gcov >> randomtestcard3.out
+	gcov randomtestcard3.c >> randomtestcard3.out
+	cat randomtestcard3.c.gcov >> randomtestcard3.out
 
 randtests: rand1 rand2 rand3
 
