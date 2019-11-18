@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "rngs.h"
 #include <stdlib.h>
-##include <time.h>
+#include <time.h>
 #include <assert.h>
 
 #define NUM_TESTS 100
