@@ -20,8 +20,11 @@ int main(int argc, char const *argv[]) {
               };
 
   int choice1;
+  int choice2;
+  int choice3;
+  int handPos;
+  int bonus;
   int currentPlayer;
-  int nextPlayer;
   int num_player;
   int seed;
   int init_coins;
@@ -37,6 +40,10 @@ int main(int argc, char const *argv[]) {
 
     num_player = rand()%(MAX_NUM_PLAYER -1) + 2;
     seed = rand()%SEED_VAL;
+    choice2 = 0;
+    choice3 = 0;
+    handPos = 0;
+    bonus = 0;
 
     initializeGame(num_player, k, seed, &G);
 
@@ -51,7 +58,7 @@ int main(int argc, char const *argv[]) {
       if(G.hand[currentPlayer][j] == estate)
         init_num_estate++;
 
-    card_baron(choice1, &G, currentPlayer, nextPlayer);
+    cardEffect(baron, choice1, choice2, choice3, &G, handpos, &bonus);
 
     coins = G.coins;
     for(j = 0; j < G.handCount[currentPlayer] ; j++)
