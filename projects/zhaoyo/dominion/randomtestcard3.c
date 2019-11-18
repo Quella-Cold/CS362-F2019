@@ -69,7 +69,7 @@ int main(int argc, char const *argv[]) {
             printf("Faired num actions check!!!!\n");
         }
     }
-
+  }
   printf("Test finish..\n");
 
   return 0;
