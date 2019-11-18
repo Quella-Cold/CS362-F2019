@@ -7,7 +7,6 @@
 
 #define NUM_TESTS 100
 #define MAX_NUM_PLAYER 8
-#define MAX_NUM_HAND 8
 #define SEED_VAL 1000
 
 int main(int argc, char const *argv[]) {
@@ -39,6 +38,7 @@ int main(int argc, char const *argv[]) {
     choice2 = 0;
     handPos = 0;
     coins = 0;
+    new_numaction = 0;
     initializeGame(num_player, k, seed, &G);
 
     choice1 = rand()%2 + 1;
