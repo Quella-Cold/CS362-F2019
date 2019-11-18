@@ -28,7 +28,6 @@ int main(int argc, char const *argv[]) {
   int new_numAction;
   int new_numhandcount;
   int i;
-  int j;
 
   for(i=0;i<NUM_TESTS;i++){
 
@@ -53,15 +52,15 @@ int main(int argc, char const *argv[]) {
           else
             printf("Failed coin number check > ^ <\n");
         }
-        printf("________Check it is Victory card_________\n");
         else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy || tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens || tributeRevealedCards[i] == great_hall) { //Victory Card Found
+            printf("________Check it is Victory card_________\n");
             if(new_numhandcount = (G.handCount[currentPlayer]+2))
               printf("Pass num actions check!!!!!\n");
             else
               printf("Faired num actions check!!!!\n");
         }
-        printf("________Check it is Action card_________\n");
         else{
+          printf("________Check it is Action card_________\n");
           if(new_numAction = (G.numActions+2))
             printf("Pass num actions check!!!!!\n");
           else
