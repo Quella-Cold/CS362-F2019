@@ -39,7 +39,7 @@ int main(int argc, char const *argv[]) {
     currentPlayer = rand()%num_player;
     new_numAction = 0;
     coins = 0;
-    nextPlayer = currentPlayer + 1;
+    nextPlayer = (currentPlayer + 1)%num_player;
     new_numhandcount = 0;
 
     initializeGame(num_player, k, seed, &G);
