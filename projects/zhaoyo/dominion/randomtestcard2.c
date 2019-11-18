@@ -23,8 +23,8 @@ int main(int argc, char const *argv[]) {
   int choice1;
   int choice2;
   int handPos;
-  int bonus;
   int currentPlayer;
+  int num_player;
   int seed;
   int init_coins;
   int coins;
@@ -49,7 +49,7 @@ int main(int argc, char const *argv[]) {
     init_coins = G.coins;
 
 
-    card_minion(&G, choice1, choice2, choice3, handPos,currentPlayer);
+    card_minion(&G, choice1, choice2, handPos,currentPlayer);
     if(new_numaction == (G.numActions+1))
       printf("Pass numActions check!!!!!!!!\n");
     else
