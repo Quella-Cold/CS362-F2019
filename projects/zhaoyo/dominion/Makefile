@@ -15,7 +15,7 @@ rand1: dominion.o randomtestcard1.c
 
 runrand1: rand1
 	./randomtestcard1 &> randomtestcard1.out
-	gcov randomtestcard1.c >> randomtestcard1.out
+	gcov -b -f randomtestcard1.c >> randomtestcard1.out
 	cat randomtestcard1.c.gcov >> randomtestcard1.out
 
 rand2: dominion.o randomtestcard2.c
