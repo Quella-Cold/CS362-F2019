@@ -30,9 +30,7 @@ int main(int argc, char const *argv[]) {
   int coins;
   int i;
   int j;
-  int numActions;
   int new_numaction;
-  int hand_count;
 
   for(i=0;i<NUM_TESTS;i++){
     printf("<<<<<<<<<< minion test %d>>>>>>>>>>>\n", i+1);
@@ -73,7 +71,7 @@ int main(int argc, char const *argv[]) {
           printf("Failed handCount check!!!!!\n");
       }
     }
-
+}
   printf("Test finish..\n");
 
 
