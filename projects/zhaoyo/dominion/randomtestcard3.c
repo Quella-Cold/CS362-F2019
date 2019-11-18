@@ -18,7 +18,7 @@ int main(int argc, char const *argv[]) {
   int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
                sea_hag, tribute, smithy
               };
-  int *tributeRevealedCards;
+  int tributeRevealedCards[2];
   int currentPlayer;
   int nextPlayer;
   int num_player;
@@ -40,7 +40,9 @@ int main(int argc, char const *argv[]) {
     coins = 0;
     nextPlayer = currentPlayer + 1;
     new_numhandcount = 0;
-    card_tribute(&G,nextPlayer,&tributeRevealedCards,currentPlayer);
+
+    initializeGame(num_player, k, seed, &G);
+    card_tribute(&G,nextPlayer,tributeRevealedCards,currentPlayer);
 
     init_coins = G.coins;
 
