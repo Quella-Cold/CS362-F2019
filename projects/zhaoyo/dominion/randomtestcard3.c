@@ -57,14 +57,14 @@ int main(int argc, char const *argv[]) {
         }
         else if (tributeRevealedCards[j] == estate || tributeRevealedCards[j] == duchy || tributeRevealedCards[j] == province || tributeRevealedCards[j] == gardens || tributeRevealedCards[j] == great_hall) { //Victory Card Found
             printf("________Check it is Victory card_________\n");
-            if(new_numhandcount = (G.handCount[currentPlayer]+2))
+            if(new_numhandcount == (G.handCount[currentPlayer]+2))
               printf("Pass num actions check!!!!!\n");
             else
               printf("Faired num actions check!!!!\n");
         }
         else{
           printf("________Check it is Action card_________\n");
-          if(new_numAction = (G.numActions+2))
+          if(new_numAction == (G.numActions+2))
             printf("Pass num actions check!!!!!\n");
           else
             printf("Faired num actions check!!!!\n");
