@@ -39,7 +39,6 @@ int main(int argc, char const *argv[]) {
     choice2 = 0;
     handPos = 0;
     coins = 0;
-    numActions = 0;
     initializeGame(num_player, k, seed, &G);
 
     choice1 = rand()%2 + 1;
