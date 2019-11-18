@@ -44,5 +44,8 @@ unittest5: dominion.o unittest5.c
 
 unittestresults: unittest1 unittest2 unittest3 unittest4 unittest5
 
+run1: unittest1
+	gcov -b -f unittest1.c
+
 clean:
 	rm -f *.o playdom.exe playdom player unittest1 unittest2 unittest3 unittest4 unittest5 player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
