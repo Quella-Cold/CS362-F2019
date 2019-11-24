@@ -65,7 +65,6 @@ int main(int argc, char const *argv[]) {
   assert(retrnvalue3 == -1);
 
   //test result 4
-  assert(retrnvalue4 == 0);
   assert(handcount == (inithandcount -1));  //bug 2
 
   return 0;
