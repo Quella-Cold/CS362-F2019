@@ -1271,7 +1271,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 int minePlayed(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int j, int currentPlayer) {
         j = state->hand[currentPlayer][choice1];  //store card we will trash
 
-        if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
+        if (state->hand[currentPlayer][choice1] < silver || state->hand[currentPlayer][choice1] > gold)
         {
             return -1;
         }
@@ -1286,7 +1286,7 @@ int minePlayed(int card, int choice1, int choice2, int choice3, struct gameState
             return -1;
         }
 
-        gainCard(choice2, state, 2, currentPlayer);
+        gainCard(choice2, state, 5, currentPlayer);
 
         //discard card from hand
         discardCard(handPos, currentPlayer, state, 0);
@@ -1635,4 +1635,3 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 
 //end of dominion.c
-
