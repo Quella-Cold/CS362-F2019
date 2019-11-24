@@ -51,7 +51,7 @@ int main(int argc, char const *argv[]) {
   choice1 = 4;
   choice2 = treasure_map;
   handPos = 1;
-  int retrnvalue4 =minePlayed(0,choice1,choice2,0,&G,handPos,&bouns,j,currentPlayer);
+  minePlayed(0,choice1,choice2,0,&G,handPos,&bouns,j,currentPlayer);
   int handcount = G.handCount[0];
 
 
