@@ -1416,7 +1416,7 @@ int minionPlayed(int card, int choice1, int choice2, int choice3, struct gameSta
 int ambassadorPlayed(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int j, int currentPlayer) {
     int i;
 
-    int j = 0;        //used to check if player has enough cards to discard
+    j = 0;        //used to check if player has enough cards to discard
 
     if (choice2 > 2 || choice2 < 0)
     {
