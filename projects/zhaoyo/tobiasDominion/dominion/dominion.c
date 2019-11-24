@@ -1269,6 +1269,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 }
 
 int minePlayed(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int j, int currentPlayer) {
+        int i;
+
         j = state->hand[currentPlayer][choice1];  //store card we will trash
 
         if (state->hand[currentPlayer][choice1] < silver || state->hand[currentPlayer][choice1] > gold)
@@ -1360,6 +1362,8 @@ int baronPlayed(int card, int choice1, int choice2, int choice3, struct gameStat
 
 int minionPlayed(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int currentPlayer) {
     //+1 action
+    int i, j;
+
     state->numActions++;
 
     //discard card from hand
@@ -1410,7 +1414,9 @@ int minionPlayed(int card, int choice1, int choice2, int choice3, struct gameSta
 }
 
 int ambassadorPlayed(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int j, int currentPlayer) {
-    j = 0;        //used to check if player has enough cards to discard
+    int i;
+
+    int j = 0;        //used to check if player has enough cards to discard
 
     if (choice2 > 2 || choice2 < 0)
     {
@@ -1469,6 +1475,8 @@ int ambassadorPlayed(int card, int choice1, int choice2, int choice3, struct gam
 }
 
 int tributePlayed(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int currentPlayer, int nextPlayer, int tributeRevealedCards[2]) {
+    int i;
+
     if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1) {
         if (state->deckCount[nextPlayer] > 0) {
             tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
