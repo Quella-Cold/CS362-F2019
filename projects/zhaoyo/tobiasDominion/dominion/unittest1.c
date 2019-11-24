@@ -19,7 +19,7 @@ int main(int argc, char const *argv[]) {
   initializeGame(2, k, 2, &G);
   G.hand[0][0] = copper;
   G.hand[0][1] = mine;
-  int j;
+  int j = 0;
   int choice1 = 0;
   int choice2 = treasure_map;
   int handPos = 1;
@@ -46,7 +46,7 @@ int main(int argc, char const *argv[]) {
   //test 4
   initializeGame(2, k, 2, &G);
   G.hand[0][1] = mine;
-  G.hand[0][4] = copper;
+  G.hand[0][4] = silver;
   int inithandcount = G.handCount[0];
   choice1 = 4;
   choice2 = treasure_map;
