@@ -13,7 +13,7 @@ int main(int argc, char const *argv[]) {
               };
 
   int currentPlayer = 0;
-  int bonus;
+  int bouns;
 
   //test 1
   initializeGame(2, k, 2, &G);
