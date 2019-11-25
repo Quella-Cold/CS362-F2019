@@ -25,14 +25,17 @@ int main(int argc, char const *argv[]) {
   int seed;
   int init_coins;
   int coins;
+  int bonus;
   int new_numAction;
   int new_numhandcount;
+  int init_deckcount;
+  int init_discardcount;
   int i;
   int j;
 
   for(i=0;i<NUM_TESTS;i++){
 
-    printf("<<<<<<<<<< tribute test %d>>>>>>>>>>>\n", i+1);
+    printf("\n<<<<<<<<<< tribute test %d>>>>>>>>>>>\n", i+1);
 
     num_player = rand()%(MAX_NUM_PLAYER -1) + 2;
     seed = rand()%SEED_VAL+1;
@@ -42,9 +45,29 @@ int main(int argc, char const *argv[]) {
     nextPlayer = (currentPlayer + 1)%num_player;
     new_numhandcount = 0;
     initializeGame(num_player, k, seed, &G);
-    card_tribute(&G,nextPlayer,tributeRevealedCards,currentPlayer);
-
+    for(j = 0; j<num_player; j++)
+      G.deckCount[j] = rand()%10;
+    init_deckcount = G.deckCount[nextPlayer];
+    for(j = 0; j<num_player; j++)
+      G.discardCount[j] = rand()%10;
+    init_discardcount = G.discardCount[nextPlayer];
+    tributePlayed(0, 0, 0, 0, &G, 0, &bonus, currentPlayer, nextPlayer, tributeRevealedCards);
     init_coins = G.coins;
+
+    if(G.discardCount[nextPlayer] + G.deckCount[nextPlayer] == 1){
+      if(G.deckCount[nextPlayer] == 1){
+        if((init_deckcount -1) == G.deckCount[nextPlayer])
+          printf("Pass deckCount test!!!!!!\n");
+        else
+          printf("Failed deckCount test > ^ <\n");
+      }
+      else {
+        if((init_discardcount -1) == G.discardCount[nextPlayer])
+          printf("Pass discardCount test!!!!!!\n");
+        else
+          printf("Failed discardCount test > ^ <\n");
+      }
+    }
 
     for (j = 0; j <= 1; j ++) {     //The second card have no effect
         if (tributeRevealedCards[j] == copper || tributeRevealedCards[j] == silver || tributeRevealedCards[j] == gold) { //Treasure cards
@@ -59,14 +82,14 @@ int main(int argc, char const *argv[]) {
             if(new_numhandcount == (G.handCount[currentPlayer]+2))
               printf("Pass num actions check!!!!!\n");
             else
-              printf("Faired num actions check!!!!\n");
+              printf("Failed num actions check!!!!\n");
         }
         else{
           printf("________Check it is Action card_________\n");
           if(new_numAction == (G.numActions+2))
             printf("Pass num actions check!!!!!\n");
           else
-            printf("Faired num actions check!!!!\n");
+            printf("Failed num actions check!!!!\n");
         }
     }
   }

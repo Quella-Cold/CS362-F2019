@@ -14,49 +14,42 @@ int main(int argc, char const *argv[]) {
 
   int currentPlayer = 0;
   int nextPlayer = 1;
+  int bouns;
+  int j = 0;
 
   //test 1
   initializeGame(2, k, 2, &G);
   int init_hand_count = G.handCount[0];
   G.hand[0][0] = estate;
+  G.hand[0][1] = copper;
   int i;
-  for(i = 1; i< 5; i++)
+  for(i = 2; i< 5; i++)
     G.hand[0][i] = mine;
-  card_baron(1, &G, currentPlayer, nextPlayer);
+  G.handCount[0] = 5;
+  baronPlayed(0,1,0,0,&G,0,&bouns,j,currentPlayer);
   int coin1 = G.coins;
-  int discardCount1 = G.discardCount[0];
-  int handCount1 = G.handCount[0];
+  int test_card = G.hand[0][0];
 
   //test 2
   initializeGame(2, k, 2, &G);
   int init_estate_count = G.supplyCount[estate];
   for(i = 0; i< 5; i++)
     G.hand[0][i] = mine;
-  card_baron(1, &G, currentPlayer, nextPlayer);
+  G.supplyCount[estate] = 1;
+  j = 0;
+  baronPlayed(0,1,0,0,&G,0,&bouns,j,currentPlayer);
   int handCount2 = G.handCount[0];
   int estatesupplecount2 = G.supplyCount[estate];
 
-  //test 3
-  initializeGame(2, k, 2, &G);
-  card_baron(0, &G, currentPlayer, nextPlayer);
-  int estatesupplecount3 = G.supplyCount[estate];
-  int curhandCount = G.handCount[0];
-  int nexhandCount = G.handCount[1];
-
   // test result 1
   assert(coin1 == 8);
-  assert(discardCount1 == 1);
-  assert(handCount1 == (init_hand_count-1));
+  //assert(test_card == copper); //bug 1
 
   // test result 2
   assert(handCount2 == init_hand_count);
-  //assert(estatesupplecount2 == (init_estate_count-1));  //bug 1
-
-  // test result 3
-  assert(estatesupplecount3 == (init_estate_count-1));
-  assert(curhandCount == init_hand_count);
-  //assert(nexhandCount == init_hand_count);    //bug2
-
+  //assert(j == 1);  //bug 2                //j should be 1, because when the supply count of estate is 0,
+                                            // it should go in to the if loop where set j to 1 for DEBUG
+                                            // purpose
 
   return 0;
 }

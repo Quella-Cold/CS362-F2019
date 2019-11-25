@@ -103,7 +103,7 @@ int baronPlayed(int card, int choice1, int choice2, int choice3, struct gameStat
 
 int minionPlayed(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int currentPlayer);
 
-int ambassadorPlayed(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int j, int currentPlayer);
+int ambassadorPlayed(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int j, int currentPlayer, int nextPlayer);
 
 int tributePlayed(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int currentPlayer, int nextPlayer, int tributeRevealedCards[2]);
 

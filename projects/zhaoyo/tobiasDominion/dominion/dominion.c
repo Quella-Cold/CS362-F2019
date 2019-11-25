@@ -1089,7 +1089,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 //        return 0;
 
     case ambassador:
-            ambassadorPlayed(card, choice1, choice2, choice3, state, handPos, bonus, j, currentPlayer);
+            ambassadorPlayed(card, choice1, choice2, choice3, state, handPos, bonus, j, currentPlayer, nextPlayer);
 //        j = 0;		//used to check if player has enough cards to discard
 //
 //        if (choice2 > 2 || choice2 < 0)
@@ -1273,7 +1273,7 @@ int minePlayed(int card, int choice1, int choice2, int choice3, struct gameState
 
         j = state->hand[currentPlayer][choice1];  //store card we will trash
 
-        if (state->hand[currentPlayer][choice1] < silver || state->hand[currentPlayer][choice1] > gold)
+        if (state->hand[currentPlayer][choice1] < silver || state->hand[currentPlayer][choice1] > gold) //bug 1 !!!!!!!!!!!!!!!!!!!
         {
             return -1;
         }
@@ -1288,7 +1288,7 @@ int minePlayed(int card, int choice1, int choice2, int choice3, struct gameState
             return -1;
         }
 
-        gainCard(choice2, state, 5, currentPlayer);
+        gainCard(choice2, state, 5, currentPlayer);  //bug 2 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 
         //discard card from hand
         discardCard(handPos, currentPlayer, state, 0);
@@ -1317,7 +1317,7 @@ int baronPlayed(int card, int choice1, int choice2, int choice3, struct gameStat
                 state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][p];
                 state->discardCount[currentPlayer]++;
                 for (; p < state->handCount[currentPlayer]; p++) {
-                    state->hand[currentPlayer][p] = state->hand[currentPlayer][p+1];
+                    state->hand[currentPlayer][p] = state->hand[currentPlayer][p+2];  //bug 1 !!!!!!!!!!!!!!!!!!!!!
                 }
                 state->hand[currentPlayer][state->handCount[currentPlayer]] = -1;
                 state->handCount[currentPlayer]--;
@@ -1332,8 +1332,9 @@ int baronPlayed(int card, int choice1, int choice2, int choice3, struct gameStat
                     gainCard(estate, state, 0, currentPlayer);
 
                     state->supplyCount[estate]--;//Decrement estates
-                    if (supplyCount(estate, state) == 0) {
+                    if (supplyCount(estate, state) == 1) {            //bug 2 !!!!!!!!!!!!!!!!!!!!!!!!!!
                         isGameOver(state);
+                        j = 1;//For Condition check, check if go into this Condition
                     }
                 }
                 card_not_discarded = 0;//Exit the loop
@@ -1376,13 +1377,13 @@ int minionPlayed(int card, int choice1, int choice2, int choice3, struct gameSta
     else if (choice2)        //discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
     {
         //discard hand
-        while(numHandCards(state) > 0)
+        while(numHandCards(state) < 0)
         {
             discardCard(handPos, currentPlayer, state, 0);
         }
 
         //draw 4
-        for (i = 0; i < 4; i++)
+        for (i = 0; i > 4; i++)     //bug 1 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             drawCard(currentPlayer, state);
         }
@@ -1401,7 +1402,7 @@ int minionPlayed(int card, int choice1, int choice2, int choice3, struct gameSta
                     }
 
                     //draw 4
-                    for (j = 0; j < 4; j++)
+                    for (j = 0; j > 4; j++)   //bug 2 !!!!!!!!!!!!!!!!!!!!!!!!1
                     {
                         drawCard(i, state);
                     }
@@ -1413,7 +1414,7 @@ int minionPlayed(int card, int choice1, int choice2, int choice3, struct gameSta
     return 0;
 }
 
-int ambassadorPlayed(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int j, int currentPlayer) {
+int ambassadorPlayed(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus, int j, int currentPlayer, int nextPlayer) {
     int i;
 
     j = 0;        //used to check if player has enough cards to discard
@@ -1423,7 +1424,7 @@ int ambassadorPlayed(int card, int choice1, int choice2, int choice3, struct gam
         return -1;
     }
 
-    if (choice1 == handPos)
+    if (choice3 == handPos)     //bug 1 !!!!!!!!!!!!!!!!!!!!!!
     {
         return -1;
     }
@@ -1456,7 +1457,7 @@ int ambassadorPlayed(int card, int choice1, int choice2, int choice3, struct gam
     }
 
     //discard played card from hand
-    discardCard(handPos, currentPlayer, state, 0);
+    discardCard(handPos, nextPlayer, state, 0); //bug 2 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     //trash copies of cards returned to supply
     for (j = 0; j < choice2; j++)
@@ -1478,9 +1479,9 @@ int tributePlayed(int card, int choice1, int choice2, int choice3, struct gameSt
     int i;
 
     if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1) {
-        if (state->deckCount[nextPlayer] > 0) {
+        if (state->deckCount[nextPlayer] < 0) {  //bug 1 !!!!!!!!!!!!!!!!!!!!!!!!!!!
             tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
-            state->deckCount[nextPlayer]--;
+            state->deckCount[nextPlayer]++;           //bug 2 !!!!!!!!!!!!!!!!!!!!!!!
         }
         else if (state->discardCount[nextPlayer] > 0) {
             tributeRevealedCards[0] = state->discard[nextPlayer][state->discardCount[nextPlayer]-1];

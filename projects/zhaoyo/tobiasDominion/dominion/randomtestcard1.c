@@ -33,10 +33,12 @@ int main(int argc, char const *argv[]) {
   int num_estate;
   int i;
   int j;
+  int v;
+  int l;
 
   for(i=0;i<NUM_TESTS;i++){
 
-    printf("<<<<<<<<<<Baron test %d>>>>>>>>>>>\n", i+1);
+    printf("\n<<<<<<<<<<Baron test %d>>>>>>>>>>>\n", i+1);
 
     num_player = rand()%(MAX_NUM_PLAYER -1) + 2;
     seed = rand()%SEED_VAL;
@@ -53,15 +55,25 @@ int main(int argc, char const *argv[]) {
     init_coins = G.coins;
 
     init_num_estate = 0;
-    for(j = 0; j < G.handCount[currentPlayer] ; j++)
-      if(G.hand[currentPlayer][j] == estate)
+    for(v = 0; v < G.handCount[currentPlayer] ; v++)
+      if(G.hand[currentPlayer][v] == estate)
         init_num_estate++;
 
-    cardEffect(baron, choice1, choice2, choice3, &G, handPos, &bonus);
+    j = 0;
+
+    for(l = 0; l < G.handCount[currentPlayer]; l++)  //first estate card
+      if(G.hand[currentPlayer][l] == estate)
+        break;
+
+    int card_test = G.hand[currentPlayer][l+1];
+
+    G.supplyCount[estate] = rand()%4;
+
+    baronPlayed(0, choice1, choice2, choice3, &G, handPos, &bonus, j, currentPlayer);
 
     coins = G.coins;
-    for(j = 0; j < G.handCount[currentPlayer] ; j++)
-      if(G.hand[currentPlayer][j] == estate)
+    for(v = 0; v < G.handCount[currentPlayer] ; v++)
+      if(G.hand[currentPlayer][v] == estate)
         num_estate++;
 
     // case choice1 = 1
@@ -77,6 +89,11 @@ int main(int argc, char const *argv[]) {
           printf("Pass estate card number check!!!!!!!!\n");
         else
           printf("Failed estate card number check >> _ <<\n" );
+
+        if(G.hand[currentPlayer][l] == card_test)
+          printf("Pass discard check!!!!!!!!!!!\n");
+        else
+          printf("Failed discard check >> _ <<\n");
       }
       else{
         if(coins == init_coins)
@@ -88,6 +105,13 @@ int main(int argc, char const *argv[]) {
           printf("Pass estate card number check!!!!!!!!\n");
         else
           printf("Failed estate card number check >> _ <<\n" );
+
+        if(G.supplyCount[estate] == 0){
+          if(j == 1)
+            printf("Pass estate supplyCount check!!!!!!!!!!\n");
+          else
+            printf("Failed estate supplyCount check >> _ <<\n");
+        }
       }
     }
     else{
