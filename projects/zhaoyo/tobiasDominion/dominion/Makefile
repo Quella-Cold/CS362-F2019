@@ -92,7 +92,7 @@ runrand3: rand3
 	gcov -b -f randomtestcard3.c >> randomtestcard.out
 	cat randomtestcard3.c.gcov >> randomtestcard.out
 
-runallrand: rand1 rand2 rand3
+runallrand: runrand1 runrand2 runrand3
 
 runall: runallunit runallrand
 	cat unittest.out >> coverageReport.out
