@@ -28,37 +28,75 @@ all: playdom player
 
 unittest1: dominion.o unittest1.c
 	gcc -o unittest1 unittest1.c -g dominion.o rngs.o $(CFLAGS)
-	gcov unittest1.c >> coverageReport.out
 
 unittest2: dominion.o unittest2.c
 	gcc -o unittest2 unittest2.c -g dominion.o rngs.o $(CFLAGS)
-	gcov unittest2.c >> coverageReport.out
 
 unittest3: dominion.o unittest3.c
 	gcc -o unittest3 unittest3.c -g dominion.o rngs.o $(CFLAGS)
-	gcov unittest3.c >> coverageReport.out
 
 unittest4: dominion.o unittest4.c
 	gcc -o unittest4 unittest4.c -g dominion.o rngs.o $(CFLAGS)
-	gcov unittest4.c >> coverageReport.out
 
 unittest5: dominion.o unittest5.c
 	gcc -o unittest5 unittest5.c -g dominion.o rngs.o $(CFLAGS)
-	gcov unittest5.c >> coverageReport.out
 
 rand1: dominion.o randomtestcard1.c
 	gcc -o randomtestcard1 randomtestcard1.c -g dominion.o rngs.o $(CFLAGS)
-	gcov randomtestcard1 >> coverageReport.out
 
 rand2: dominion.o randomtestcard2.c
 	gcc -o randomtestcard2 randomtestcard2.c -g dominion.o rngs.o $(CFLAGS)
-	gcov randomtestcard2 >> coverageReport.out
 
 rand3: dominion.o randomtestcard3.c
 	gcc -o randomtestcard3 randomtestcard3.c -g dominion.o rngs.o $(CFLAGS)
-	gcov randomtestcard3 >> coverageReport.out
 
-alltest: unittest1 unittest2 unittest3 unittest4 unittest4 unittest5 randomtestcard1 randomtestcard2 randomtestcard3
+rununit1: unittest1
+	./unittest1 &> unittest.out
+	gcov -b -f unittest1.c >> unittest.out
+	cat unittest1.c.gcov >> unittest.out
+
+rununit2: unittest2
+	./unittest2 &> unittest.out
+	gcov -b -f unittest2.c >> unittest.out
+	cat unittest2.c.gcov >> unittest.out
+
+rununit3: unittest3
+	./unittest3 &> unittest.out
+	gcov -b -f unittest3.c >> unittest.out
+	cat unittest3.c.gcov >> unittest.out
+
+rununit4: unittest4
+	./unittest4 &> unittest.out
+	gcov -b -f unittest4.c >> unittest.out
+	cat unittest4.c.gcov >> unittest.out
+
+rununit5: unittest5
+	./unittest5 &> unittest.out
+	gcov -b -f unittest5.c >> unittest.out
+	cat unittest5.c.gcov >> unittest.out
+
+runallunit: rununit1 rununit2 rununit3 rununit4 rununit5
+
+runrand1: rand1
+	./randomtestcard1 &> randomtestcard.out
+	gcov -b -f randomtestcard1.c >> randomtestcard.out
+	cat randomtestcard1.c.gcov >> randomtestcard.out
+
+runrand2: rand2
+	./randomtestcard2 &> randomtestcard.out
+	gcov -b -f randomtestcard2.c >> randomtestcard.out
+	cat randomtestcard2.c.gcov >> randomtestcard.out
+
+runrand3: rand3
+	./randomtestcard3 &> randomtestcard.out
+	gcov -b -f randomtestcard3.c >> randomtestcard.out
+	cat randomtestcard3.c.gcov >> randomtestcard.out
+
+runallrand: rand1 rand2 rand3
+
+runall: runallunit runallrand
+	cat unittest.out >> coverageReport.out
+	cat randomtestcard.out >> coverageReport.out
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe unittest1 unittest2 unittest3 unittest4 unittest5 randomtestcard1 randomtestcard2 randomtestcard3
